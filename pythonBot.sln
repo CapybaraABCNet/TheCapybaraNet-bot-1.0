@@ -1,23 +1,42 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "pythonBot", "pythonBot\pythonBot.pyproj", "{1879F627-6F4C-4CAC-805C-BFA05E0EFEEE}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1879F627-6F4C-4CAC-805C-BFA05E0EFEEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1879F627-6F4C-4CAC-805C-BFA05E0EFEEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A2123A93-FDD1-4273-A612-471A429D286D}
-	EndGlobalSection
-EndGlobal
+import telebot
+import random
+
+TOKEN = ""
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start', 'help'])
+def send_welcome(message):
+    bot.reply_to(message, "Hello! I am the CapybaraNET bot. Here are the commands:\n"
+                          "/start - start the bot\n"
+                          "/help - help\n"
+                          "/capybara - The story of the capybaras\n"
+                          "/dog - A story about dogs\n"
+                          "/cat - A story about cats\n"
+                          "/Kazan - About Kazan\n"
+                          "/Eminem - About Eminem")
+
+@bot.message_handler(commands=['capybara']) 
+def send_capybara(message):
+    bot.reply_to(message, "Capybaras are the largest rodents in the world, native to South America. They are social, semi-aquatic herbivores that can weigh up to 66 kg (145 lbs). Capybaras are excellent swimmers and often live in groups of up to 20 individuals.")
+
+@bot.message_handler(commands=['dog'])
+def send_dog(message):
+    bot.reply_to(message, "Corgis are playful and affectionate dogs known for their short legs and long bodies, "
+                          "Chihuahuas are tiny but bold companions with big personalities, "
+                          "and Shih Tzus are friendly and loving toy breeds with luxurious coats.")
+
+@bot.message_handler(commands=['cat'])
+def send_cat(message):
+    bot.reply_to(message, "Cats are independent, curious creatures known for their playful behavior and affectionate nature.")
+
+@bot.message_handler(commands=['Kazan'])
+def send_Kazan(message):
+    bot.reply_to(message, "Kazan is the capital of Tatarstan, Russia, known for its rich history, diverse culture, "
+                          "and stunning architecture, including the UNESCO-listed Kazan Kremlin.")
+
+@bot.message_handler(commands=['Eminem'])
+def send_Eminem(message):
+    bot.reply_to(message, "Eminem is a critically acclaimed American rapper, songwriter, and record producer known for his intricate lyrics, rapid-fire flow, and influence on hip-hop culture.")
+
+if __name__ == '__main__':
+    bot.polling()
